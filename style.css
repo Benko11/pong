@@ -1,0 +1,83 @@
+@import url('./reset.css');
+
+@font-face {
+    font-family: 'Ac437';
+    src: url('./Ac437_Acer_VGA_8x8.ttf');
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+#board {
+    aspect-ratio: 16 / 16;
+    height: 70vh;
+    position: relative;
+    border: 2px solid #fff;
+    font-family: 'Ac437';
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    cursor: none;
+    overflow: hidden;
+}
+
+.platform {
+    --position: 50;
+
+    width: 1vh;
+    height: 10vh;
+    background-color: #fff;
+    position: absolute;
+    top: calc(var(--position) * 1%);
+    transform: translateY(-50%);
+}
+
+.left {
+    left: 4px;
+}
+
+.right {
+    right: 4px;
+}
+
+.ball {
+    --x: 50;
+    --y: 50;
+
+    width: 1.5vh;
+    height: 1.5vh;
+    background-color: #fff;
+    top: calc(var(--y) * 1%);
+    transform: translateY(-50%);
+    position: absolute;
+    left: calc(var(--x) * 1%);
+}
+
+.divider {
+    position: absolute;
+    background-color: #fff;
+    width: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+
+.scores {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.scores div {
+    font-size: 3.5vh;
+    text-align: center;
+    padding-top: 1vh;
+}
