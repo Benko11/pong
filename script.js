@@ -12,9 +12,16 @@ const boardRect = board.getBoundingClientRect();
 
 const registerWorker = async () => {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./worker.js');
+        console.log('fuck');
+        navigator.serviceWorker
+            .register('/worker.js', { scope: '/' })
+            .then((r) => {
+                console.log('registered', r.scope);
+            })
+            .catch((err) => console.error('Not registered', err));
     }
 };
+registerWorker();
 
 class Score {
     constructor(el) {
@@ -99,19 +106,11 @@ class Ball {
             this.rect().right >= boardRect.right - OFFSET
         ) {
             this.direction.x *= -1;
-            console.log('fuck you');
-            console.log(
-                'Ball:',
-                this.rect().x,
-                'Platform:',
-                platforms[0].rect().left
-            );
         }
 
         if (
             platforms.some((r) => {
                 if (isCollision(r, this.rect())) {
-                    console.log(r.el.classList.contains('left'));
                 }
                 return isCollision(r.rect(), this.rect());
             })
